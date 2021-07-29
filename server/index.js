@@ -8,6 +8,8 @@ app.use(cors())
 const db = require('./models')
 
 //Routers
+const placesRouter = require('./routes/Places')
+app.use("/places", placesRouter)
 
 
 
