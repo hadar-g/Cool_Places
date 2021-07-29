@@ -1,6 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import Home from './components/Home';
+import Search from './components/Search';
 
 
 
@@ -13,10 +14,11 @@ function App() {
       <Router>
         <div className = "navbar">
         <Link to = "/">Home</Link>  
-        <button>Show form</button>
+        <h1>Cool Places</h1>
         </div>
         <Switch>
             <Route path = "/" exact component = {Home} />
+            <Route path = "/search" exact component = {Search} />
         </Switch>
       </Router>
     </div>

@@ -76,3 +76,13 @@ line-height: 31px;
     color: white;
     background-color: navy;
 }
+.menu{
+    margin-left: 100px;
+    width: 200px;
+    padding: 10px;
+}
+.elements{
+    align-items: row;
+    display: flex;
+    flex-direction: row;
+}

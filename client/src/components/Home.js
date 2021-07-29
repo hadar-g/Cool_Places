@@ -1,16 +1,21 @@
 import React from 'react'
 import InputForm from './Form';
 import {useState, useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import './Home.css'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+
 function Home() {
 
-const[formShown, setFormShown] = useState(false)
+let history = useHistory()
 
+const[formShown, setFormShown] = useState(false)
 const[listOfPlaces, setListOfPlaces] = useState([])
+const[photo, setPhoto] = useState()
+const[isPhoto, setIsPhoto] = useState(false)
 
 const options = [
     'Location', 'User', 'Keyword'
@@ -26,6 +31,9 @@ const hideFormHandler = () => {
   setFormShown(false)
 }
 const submitFormHandler = (data) => {
+  console.log(data)
+  data.image= photo
+  console.log(data)
   axios.post("http://localhost:3001/places", data).then((response)=>{
     console.log("sent to db")
   })
@@ -34,7 +42,15 @@ const submitFormHandler = (data) => {
 
 const dropdownMenuHandler = (value) => {
     console.log(value.value)
+    history.push('/search')
 }
+
+const imageHandler = (imageFile) => {
+    setPhoto(imageFile)
+    console.log(imageFile)
+    setIsPhoto(true)
+}
+
     return (
         <div className="App">
         <h1>List of Cool Places</h1>
@@ -42,11 +58,15 @@ const dropdownMenuHandler = (value) => {
       {formShown &&  
       <InputForm 
           onSubmit = {submitFormHandler} 
-          onClose = {hideFormHandler} />}
+          onClose = {hideFormHandler}
+          onPassImage = {imageHandler} />}
 
-      <button className = "submission" onClick = {() => {setFormShown(true)}}> Add A New Place To the List</button>
-
-      <Dropdown options={options} onChange={dropdownMenuHandler} value={"Sort By"} />;
+    <div className = "elements">
+        <button className = "submission" onClick = {() => {setFormShown(true)}}> Add A New Place To the List</button>
+        <Dropdown className = "menu" options={options} onChange={dropdownMenuHandler} value={"Sort By"} />
+    </div>
+      
+     
   
       
       {listOfPlaces.map((value, key) => {
@@ -64,6 +84,8 @@ const dropdownMenuHandler = (value) => {
           </div>
         )
       })}
+
+     {/* { isPhoto && <img alt = "Hadars photos" ref = "image" src = {require(photo.secure_url)} /> } */}
         
       </div>
     )

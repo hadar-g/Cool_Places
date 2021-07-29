@@ -18,12 +18,17 @@ function InputForm(props) {
         title: Yup.string().required("must input a title"),
         description: Yup.string().required(),
         username: Yup.string().min(3).max(15),
-        image: Yup.string().required()
+        image: Yup.mixed()
     })
 
 
     const onSubmit = (data) => {
        props.onSubmit(data)
+       console.log(data)
+    }
+    const imageSubmitHandler = (event) =>{
+      console.log(event.target.files[0])
+      props.onPassImage(event.target.files[0])
     }
     
     return (
@@ -55,10 +60,11 @@ function InputForm(props) {
                     <label>Image:</label>
                     <ErrorMessage name="image" component="span"/>
                     <Field 
-                        autoComplete ="off"
+                        type = "file"
                         id="inputCreateImage" 
                         name ="image" 
-                        placeholder="image"/>
+                        onChange = {imageSubmitHandler}
+                        />
                 <button type = "submit"> Add place </button> 
                 </Form>
             </Formik>
