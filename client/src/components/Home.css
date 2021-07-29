@@ -1,0 +1,78 @@
+.postContainer {
+    width: 800px;
+    height: 500px;
+    flex-direction: grid;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* background-color: rgb(211, 148, 148); */
+    padding: 20px;
+    margin: 50px;
+    border-radius: 30px;
+    border: 10px solid navy;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.title {
+    /* background-color: green; */
+    height: 100px;
+    width: 80%;
+    border-radius: 50px;
+    border: 5px solid navy;
+    font-size: 50px;
+    text-decoration: underline;
+}
+.description{
+   /* background-color: brown; */
+   height: 300px;
+   width: 70%;
+   overflow: scroll;
+   padding: 10px 25px 25px 10px;
+   /* paddding: top right left bottom */
+   font-size: larger;
+   text-align: left;
+   border-radius: 25px;
+   border: 5px solid navy;
+   background-image:
+     linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px), 
+    repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+line-height: 31px;
+ padding:1px; 
+}
+.username{
+    /* background-color: blue; */
+    color: navy;
+    width: 20%;
+    border-radius: 15px;
+    font-size: large;
+    text-align: left;
+    padding: 15px;
+    font-size: 50px;
+    font-weight: bold;
+}
+.image{
+    background-color: pink;
+    border-radius: 20px;
+    width: 30%;
+    margin-right: 20px;
+}
+.topBar{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px
+    /* justify-content: center; */
+}
+.bottomBar{
+    display: flex;
+    flex-direction: row;
+    padding: 10px
+}
+
+.submission{
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: navy;
+}
