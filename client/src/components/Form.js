@@ -1,7 +1,9 @@
 import React from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-import classes from './Form.module.css'
+//import classes from './Form.module.css'
+import "./Form.css"
+import Modal from './Modal'
 
 
 function InputForm(props) {
@@ -19,13 +21,14 @@ function InputForm(props) {
         image: Yup.string().required()
     })
     const onSubmit = (data) => {
-        props.onSubmit()
+        props.onSubmit(data)
     }
     
     return (
-        <div className = {classes.formContainer}>
+        <Modal onClose = {props.onClose}>
+        <div className = "formContainer">
             <Formik  initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-            <Form className = {classes.form} > 
+            <Form className = "form" > 
                     <label>Title:</label>
                     <ErrorMessage name="title" component="span"/>
                     <Field 
@@ -35,7 +38,7 @@ function InputForm(props) {
                         placeholder="title goes here..."/> 
                     <label>Descritpiton:</label>
                     <ErrorMessage name="description" component="span"/>
-                    <Field 
+                    <Field as="textarea"
                         autoComplete ="off"
                         id="inputCreateDescription" 
                         name ="descritpion" 
@@ -58,6 +61,7 @@ function InputForm(props) {
                 </Form>
             </Formik>
         </div>
+        </Modal>
     )
 }
 
