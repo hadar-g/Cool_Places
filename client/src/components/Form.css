@@ -71,6 +71,11 @@
     color: white;
     margin-right: 30px;
   }
+
+  .form button:hover {
+    cursor: pointer;
+    background-color: rgb(3, 51, 100);
+  }
   span{
       color:red
   }

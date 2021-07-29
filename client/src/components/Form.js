@@ -11,23 +11,25 @@ function InputForm(props) {
     const initialValues = {
         title: "",
         description: "",
-        image: "",
         username: "",
+        image: "",
     }
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("must input a title"),
-        descritption: Yup.string().required(),
+        description: Yup.string().required(),
         username: Yup.string().min(3).max(15),
         image: Yup.string().required()
     })
+
+
     const onSubmit = (data) => {
-        props.onSubmit(data)
+       props.onSubmit(data)
     }
     
     return (
         <Modal onClose = {props.onClose}>
         <div className = "formContainer">
-            <Formik  initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        <Formik  initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             <Form className = "form" > 
                     <label>Title:</label>
                     <ErrorMessage name="title" component="span"/>
@@ -41,7 +43,7 @@ function InputForm(props) {
                     <Field as="textarea"
                         autoComplete ="off"
                         id="inputCreateDescription" 
-                        name ="descritpion" 
+                        name ="description" 
                         placeholder="Describe the place..."/> 
                     <label>Username:</label>
                     <ErrorMessage name="username" component="span"/>
@@ -57,7 +59,7 @@ function InputForm(props) {
                         id="inputCreateImage" 
                         name ="image" 
                         placeholder="image"/>
-                <button type = "submit">Add place</button> 
+                <button type = "submit"> Add place </button> 
                 </Form>
             </Formik>
         </div>
