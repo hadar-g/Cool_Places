@@ -10,10 +10,6 @@ const db = require('./models')
 //Routers
 
 
-// app.listen(3001, () => {
-//     console.log('running on port 3001')
-// })
-
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
