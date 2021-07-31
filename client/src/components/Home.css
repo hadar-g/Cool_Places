@@ -75,10 +75,11 @@ line-height: 31px;
     font-weight: bold;
     color: white;
     background-color: navy;
-}
+     margin-left: 100px;
+} 
 .menu{
-    margin-left: 100px;
-    width: 200px;
+    margin-left: 50px;
+    width: 150px;
     padding: 10px;
 }
 .elements{

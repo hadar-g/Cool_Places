@@ -11,6 +11,9 @@ const db = require('./models')
 const placesRouter = require('./routes/Places')
 app.use("/places", placesRouter)
 
+const ImageRouter = require('./routes/Images')
+app.use("/images", ImageRouter)
+
 
 
 db.sequelize.sync().then(() => {

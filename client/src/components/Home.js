@@ -17,9 +17,12 @@ const[listOfPlaces, setListOfPlaces] = useState([])
 const[photo, setPhoto] = useState()
 const[isPhoto, setIsPhoto] = useState(false)
 
-const options = [
+const searchOptions = [
     'Location', 'User', 'Keyword'
   ];
+const sortOptions = [
+    "newest to oldest", "Oldest to newest", "alphabetical"
+]
 
 useEffect(() => {
   axios.get("http://localhost:3001/places").then((response) => {
@@ -44,6 +47,9 @@ const dropdownMenuHandler = (value) => {
     console.log(value.value)
     history.push('/search')
 }
+const sortMenuHandler = (value) => {
+    console.log(value.value)
+}
 
 const imageHandler = (imageFile) => {
     setPhoto(imageFile)
@@ -63,7 +69,8 @@ const imageHandler = (imageFile) => {
 
     <div className = "elements">
         <button className = "submission" onClick = {() => {setFormShown(true)}}> Add A New Place To the List</button>
-        <Dropdown className = "menu" options={options} onChange={dropdownMenuHandler} value={"Sort By"} />
+        <Dropdown className = "menu" options={searchOptions} onChange={dropdownMenuHandler} value={"Search By"} />
+        <Dropdown className = "menu" options={sortOptions} onChange={sortMenuHandler} value={"Sort By"} />
     </div>
       
      
