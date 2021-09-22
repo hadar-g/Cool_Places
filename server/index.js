@@ -1,9 +1,19 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
+const fileUpload = require("express-fileupload")
+const morgan = require("morgan")
 
 app.use(express.json())
 app.use(cors())
+app.use(express.urlencoded({ extended: true }))
+app.use(morgan("dev"))
+
+
+
+app.use(fileUpload({
+    createParentPath: true
+  }))
 
 const db = require('./models')
 

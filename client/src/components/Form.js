@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 //import classes from './Form.module.css'
 import "./Form.css"
 import Modal from './Modal'
+import axios from 'axios'
 
 
 function InputForm(props) {
@@ -26,10 +27,14 @@ function InputForm(props) {
        props.onSubmit(data)
        console.log(data)
     }
-    // const imageSubmitHandler = (event) =>{
-    //   console.log(event.target.files[0])
-    //   props.onPassImage(event.target.files[0])
-    // }
+    const imageSubmitHandler = (event) =>{
+      console.log(event.target.files[0])
+      axios.post("http://localhost:3001/images", event.target.files[0]).then((response)=>{
+        console.log("sent to files")
+        console.log(response)
+      })
+      
+    }
     
     return (
         <Modal onClose = {props.onClose}>
@@ -60,9 +65,10 @@ function InputForm(props) {
                     <label>Image:</label>
                     <ErrorMessage name="image" component="span"/>
                     <Field 
+                        type = "file"
                         id="inputCreateImage" 
                         name ="image" 
-                       // onChange = {imageSubmitHandler}
+                        onChange = {imageSubmitHandler}
                         />
                 <button type = "submit"> Add place </button> 
                 </Form>

@@ -49,12 +49,27 @@ const dropdownMenuHandler = (value) => {
 }
 const sortMenuHandler = (value) => {
     console.log(value.value)
+    if(value.value === sortOptions[0]){
+        setListOfPlaces(listOfPlaces.reverse())
+        console.log('0')
+
+    }
+    if(value.value === sortOptions[1]){
+        console.log(listOfPlaces.reverse())
+    }
+    if(value.value === sortOptions[2]){
+        console.log('2')
+    }
 }
 
 const imageHandler = (imageFile) => {
     setPhoto(imageFile)
     console.log(imageFile)
     setIsPhoto(true)
+}
+
+const deletePlaceHandler = (id) => {
+  axios.delete(`http://localhost:3001/places/${id}`).then(() => {console.log("deleted")})
 }
 
     return (
@@ -86,8 +101,8 @@ const imageHandler = (imageFile) => {
             <div className = "bottomBar">
                 <div className = "image">{value.image}</div>
                 <div className = "description">{value.description}</div>
-                
             </div>
+            <button onClick = {() => {deletePlaceHandler(value.id)}} >Remove</button>
           </div>
         )
       })}

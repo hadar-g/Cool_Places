@@ -14,4 +14,14 @@ router.post('/', async (req, res) => {
     res.json(place)
 })
 
+router.delete('/:placeid', (req, res) => {
+    placeid = req.params.placeid
+    Places.destroy({
+        where: {
+            id: placeid
+        }
+    })
+    res.json(deleted)
+})
+
 module.exports = router

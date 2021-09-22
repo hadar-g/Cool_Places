@@ -1,23 +1,31 @@
 const express = require('express')
 const router = express.Router()
-const {Images} = require("../models")
+//const {Images} = require("../models")
+const formidable = require("formidable");
+const path = require('path')
+const fileUpload = require("express-fileupload")
+const morgan = require("morgan")
 
 
 router.post('/', async (req, res) => {
-    var form = new formidable.IncomingForm()
-    form.multiples = true
-    form.uploadDir = path.join(_dirname, '../../../Images')
-    form.on('error', function(err) {
-        errorLogger.error('During file upload: ' + err);
-      });
-  
-      // once all the files have been uploaded, send a response to the client
-      form.on('end', function() {
-        res.end('success');
-      });
-  
-      // parse the incoming request containing the form data
-      form.parse(req);
+    try {
+        if(!req.files){
+          res.send({
+            status: false,
+            message: "No files"
+          })
+        } else {
+          const {picture} = req.files
+    
+          picture.mv("./uploads/" + picture.name)
+    
+          res.send({
+            status: true,
+            message: "File is uploaded"
+          })
+        }
+      } catch (e) {
+        res.status(500).send(e)
+      }
 })
-
 module.exports = router
