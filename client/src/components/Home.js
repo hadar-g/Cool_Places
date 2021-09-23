@@ -62,15 +62,20 @@ const sortMenuHandler = (value) => {
     }
 }
 
-const imageHandler = (imageFile) => {
-    setPhoto(imageFile)
-    console.log(imageFile)
-    setIsPhoto(true)
+const imageShowHandler = () => {
+  
 }
 
 const deletePlaceHandler = (id) => {
-  axios.delete(`http://localhost:3001/places/${id}`).then(() => {console.log("deleted")})
+  axios.delete(`http://localhost:3001/places/${id}`).then(() => {
+    setListOfPlaces(listOfPlaces.filter((val) => {
+      return val.id != id
+    }))
+  })
+
 }
+    
+  
 
     return (
         <div className="App">
@@ -80,10 +85,11 @@ const deletePlaceHandler = (id) => {
       <InputForm 
           onSubmit = {submitFormHandler} 
           onClose = {hideFormHandler}
-          onPassImage = {imageHandler} />}
+         />}
 
     <div className = "elements">
         <button className = "submission" onClick = {() => {setFormShown(true)}}> Add A New Place To the List</button>
+        <button onClick = {() => imageShowHandler(true)}> Add an Image</button>
         <Dropdown className = "menu" options={searchOptions} onChange={dropdownMenuHandler} value={"Search By"} />
         <Dropdown className = "menu" options={sortOptions} onChange={sortMenuHandler} value={"Sort By"} />
     </div>
