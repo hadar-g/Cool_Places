@@ -43,7 +43,7 @@ function Images() {
           </div>
         ))}
   
-        <img src="/images/9fa06d3c5da7aec7f932beb5b3e60f1d"></img>
+        <img src="http://localhost:3001/images/d5d2a78660e9f16287423feff67d4a80"></img>
   
       </div>
     )
