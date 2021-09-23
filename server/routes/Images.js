@@ -3,29 +3,14 @@ const router = express.Router()
 //const {Images} = require("../models")
 const formidable = require("formidable");
 const path = require('path')
-const fileUpload = require("express-fileupload")
-const morgan = require("morgan")
+const multer = require('multer')
+const upload = multer({dest:'uplodads/'})
 
-
-router.post('/', async (req, res) => {
-    try {
-        if(!req.files){
-          res.send({
-            status: false,
-            message: "No files"
-          })
-        } else {
-          const {picture} = req.files
-    
-          picture.mv("./uploads/" + picture.name)
-    
-          res.send({
-            status: true,
-            message: "File is uploaded"
-          })
-        }
-      } catch (e) {
-        res.status(500).send(e)
-      }
+router.post('/', upload.single('image'), async (req, res) => {
+   const file = req.file
+   const description = req.body.description
+   const filename = file.filename
+   res.json(filename)
+   console.log(file.filename)
 })
 module.exports = router
